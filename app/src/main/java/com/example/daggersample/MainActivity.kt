@@ -1,11 +1,31 @@
 package com.example.daggersample
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.example.daggersample.di.DaggerCarComponent
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
+    // Field injection
+    @Inject
+    lateinit var car: Car
+
+    @Inject
+    lateinit var engine: Engine
+
+    @Inject
+    lateinit var wheel: Wheel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Creating dagger graph and injecting main activity because it is injected by android framework for which dagger cant inject this
+        DaggerCarComponent.create().inject(this)
+        car.drive()
+        engine.startEngine()
+        wheel.startWheel()
     }
 }
