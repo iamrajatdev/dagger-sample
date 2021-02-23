@@ -6,7 +6,7 @@ import dagger.Component
 /**
  * Dependency graph objects
  */
-@Component(modules = [WheelModule::class, PetrolEngineModule::class])
+@Component(modules = [WheelModule::class, TestEngineModule::class])
 @ActivityScope
 interface CarComponent {
 

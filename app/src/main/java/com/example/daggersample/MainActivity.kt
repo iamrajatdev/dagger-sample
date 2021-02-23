@@ -3,6 +3,7 @@ package com.example.daggersample
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.daggersample.di.DaggerCarComponent
+import com.example.daggersample.di.TestEngineModule
 import com.example.daggersample.sample.Car
 import com.example.daggersample.sample.Engine
 import com.example.daggersample.sample.Wheel
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Creating dagger graph and injecting main activity because it is injected by android framework for which dagger cant inject this
-        DaggerCarComponent.create().inject(this)
+        DaggerCarComponent.builder().testEngineModule(TestEngineModule(100)).build().inject(this)
         car.drive()
         engine.startEngine()
         wheel.startWheel()
