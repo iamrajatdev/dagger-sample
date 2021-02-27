@@ -6,12 +6,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class TestEngineModule constructor(var numOfTests: Int) {
-
-    @Provides
-    fun provideTest(): TestEngine {
-        return TestEngine(numOfTests)
-    }
+class TestEngineModule {
 
     @Provides
     fun getTestEngine(testEngine: TestEngine): Engine = testEngine
